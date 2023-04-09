@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:form_app/Available_Donors.dart';
 
 class Reciver extends StatefulWidget {
   const Reciver({Key? key}) : super(key: key);
@@ -103,6 +104,39 @@ class _ReciverState extends State<Reciver> {
                           focusedBorder: OutlineInputBorder(
                             borderSide:
                                 BorderSide(color: Colors.red, width: 2.0),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const Available_Donors()));
+                          }
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.green[500],
+                          ),
+                          width: double.maxFinite,
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: Text(
+                                'Find',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 20,
+                                    color: Colors.white),
+                              ),
+                            ),
                           ),
                         ),
                       ),
