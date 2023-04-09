@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:form_app/Ambulance.dart';
+import 'package:form_app/Reciver.dart';
 
 import 'Hospital.dart';
 import 'MyProfile.dart';
@@ -165,44 +167,60 @@ class _HomeScreenState extends State<HomeScreen> {
                     ]),
                   ),
                 ),
-                Card(
-                  elevation: 10,
-                  margin: const EdgeInsets.all(8.0),
-                  color: Colors.white,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(children: [
-                      Icon(
-                        Icons.man_2,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        'Reciver',
-                        style: TextStyle(color: Colors.black),
-                      ),
-                    ]),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Reciver()));
+                  },
+                  child: Card(
+                    elevation: 10,
+                    margin: const EdgeInsets.all(8.0),
+                    color: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(children: [
+                        Icon(
+                          Icons.man_2,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          'Reciver',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                      ]),
+                    ),
                   ),
                 ),
-                Card(
-                  elevation: 10,
-                  color: Colors.white,
-                  child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Row(children: [
-                      Icon(
-                        Fontisto.ambulance,
-                        size: 17,
-                      ),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Text(
-                        'Ambulance',
-                        style: TextStyle(color: Colors.black),
-                      ),
-                    ]),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Ambulance()));
+                  },
+                  child: Card(
+                    elevation: 10,
+                    color: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Row(children: [
+                        Icon(
+                          Fontisto.ambulance,
+                          size: 17,
+                        ),
+                        SizedBox(
+                          width: 15,
+                        ),
+                        Text(
+                          'Ambulance',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                      ]),
+                    ),
                   ),
                 ),
               ],
