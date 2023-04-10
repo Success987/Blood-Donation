@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Available_Donors extends StatefulWidget {
-  const Available_Donors({Key? key}) : super(key: key);
+class AvailableDonors extends StatefulWidget {
+  const AvailableDonors({Key? key}) : super(key: key);
 
   @override
-  State<Available_Donors> createState() => _Available_DonorsState();
+  State<AvailableDonors> createState() => _AvailableDonorsState();
 }
 
-class _Available_DonorsState extends State<Available_Donors> {
+class _AvailableDonorsState extends State<AvailableDonors> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -9,7 +9,32 @@ class Reciver extends StatefulWidget {
 }
 
 class _ReciverState extends State<Reciver> {
-  final _formKey = GlobalKey<FormState>();
+  @override
+  void initState() {
+    super.initState();
+    valueChoose = listItem[0];
+    valueChoose1 = listItem1[0];
+  }
+
+  late String valueChoose;
+  late String valueChoose1;
+
+  List listItem = [
+    'Weekly',
+    'Daily 1 time',
+    'Daily 2 time',
+    '15 Days',
+  ];
+  List listItem1 = [
+    'A',
+    'B',
+  ];
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,133 +44,176 @@ class _ReciverState extends State<Reciver> {
       ),
       body: Column(
         children: [
-          Stack(
-            clipBehavior: Clip.none,
-            children: [
-              Container(
-                height: 150,
-                width: double.maxFinite,
-                decoration: BoxDecoration(
-                    color: Colors.red[900],
-                    borderRadius: BorderRadius.only(
-                        bottomRight: Radius.circular(75),
-                        bottomLeft: Radius.circular(75))),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        "BD-Finder",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 30,
-                            fontWeight: FontWeight.w600),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Positioned(
-                top: 70,
-                left: 30,
-                child: Container(
-                  height: 330,
-                  width: 300,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(50),
+          Container(
+            height: 150,
+            width: double.maxFinite,
+            decoration: BoxDecoration(
+                color: Colors.red[900],
+                borderRadius: BorderRadius.only(
+                    bottomRight: Radius.circular(75),
+                    bottomLeft: Radius.circular(75))),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text(
+                    "BD-Finder",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 30,
+                        fontWeight: FontWeight.w600),
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 30, top: 30),
-                        child: Text(
-                          "Select District",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600),
-                        ),
-                      ),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          fillColor: Colors.white,
-                          filled: true,
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                color: Color(0XFFD1D5D8), width: 2.0),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.red, width: 2.0),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 40, top: 40),
-                        child: Text(
-                          "Select Blood Group",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600),
-                        ),
-                      ),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          fillColor: Colors.white,
-                          filled: true,
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                color: Color(0XFFD1D5D8), width: 2.0),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.red, width: 2.0),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 18,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          if (_formKey.currentState!.validate()) {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const Available_Donors()));
-                          }
+                ),
+              ],
+            ),
+          ),
+          Container(
+            width: 300,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(50),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(30.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Select District",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Container(
+                    width: double.maxFinite,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[400],
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: DropdownButtonHideUnderline(
+                      child: DropdownButton(
+                        alignment: Alignment.center,
+                        dropdownColor: Colors.white,
+                        icon: const Icon(Icons.location_pin),
+                        iconSize: 30.0,
+                        value: valueChoose,
+                        onChanged: (newValue) {
+                          setState(() {
+                            valueChoose = newValue as String;
+                          });
                         },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.green[500],
-                          ),
-                          width: double.maxFinite,
-                          child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.all(15.0),
-                              child: Text(
-                                'Find',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 20,
-                                    color: Colors.white),
+                        items: listItem.map((valueItem) {
+                          return DropdownMenuItem(
+                            value: valueItem,
+                            child: Text(
+                              valueItem,
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 16.0,
                               ),
                             ),
+                          );
+                        }).toList(),
+                      ),
+                    ),
+                  ),
+                  Text(
+                    "Select Blood Group",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Container(
+                    width: double.maxFinite,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[400],
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 15.0),
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton(
+                          alignment: Alignment.center,
+                          dropdownColor: Colors.white,
+                          icon: const Icon(Icons.arrow_drop_down),
+                          iconSize: 30.0,
+                          value: valueChoose1,
+                          onChanged: (newValue1) {
+                            setState(() {
+                              valueChoose1 = newValue1 as String;
+                            });
+                          },
+                          items: listItem1.map((valueItem1) {
+                            return DropdownMenuItem(
+                              value: valueItem1,
+                              child: Text(
+                                valueItem1,
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16.0,
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    "Select Blood Group",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  GestureDetector(
+                    behavior: HitTestBehavior.translucent,
+                    onTap: () {
+                      print('asdasd');
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const AvailableDonors()));
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.green[500],
+                      ),
+                      width: double.maxFinite,
+                      child: const Center(
+                        child: Padding(
+                          padding: EdgeInsets.all(15.0),
+                          child: Text(
+                            'Find',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 20,
+                                color: Colors.white),
                           ),
                         ),
                       ),
-                    ],
+                    ),
                   ),
-                ),
+                ],
               ),
-            ],
+            ),
           ),
         ],
       ),
