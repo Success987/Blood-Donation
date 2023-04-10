@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Ambulance extends StatefulWidget {
   const Ambulance({Key? key}) : super(key: key);
@@ -1001,10 +1002,17 @@ class _AmbulanceState extends State<Ambulance> {
                           SizedBox(
                             height: 5,
                           ),
-                          Text(
-                            "01-8576236",
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.w500),
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+                                _launchDialer('01-8576236');
+                              });
+                            },
+                            child: Text(
+                              "01-8576236",
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.w500),
+                            ),
                           ),
                         ],
                       ),
@@ -1015,5 +1023,14 @@ class _AmbulanceState extends State<Ambulance> {
             ),
           ])),
         ));
+  }
+}
+
+void _launchDialer(String phoneNumber) async {
+  final url = 'tel:$phoneNumber';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
   }
 }

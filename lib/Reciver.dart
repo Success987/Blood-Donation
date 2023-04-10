@@ -20,14 +20,30 @@ class _ReciverState extends State<Reciver> {
   late String valueChoose1;
 
   List listItem = [
-    'Weekly',
-    'Daily 1 time',
-    'Daily 2 time',
-    '15 Days',
+    'Kathmandu',
+    'Lalitpur',
+    'Kritipur',
+    'Dhading',
+    'Nuwakot',
+    'Bhaktapur',
+    'Dharan',
+    'Jhapa',
+    'Illam',
+    'Dhankuta',
+    'Janakpur',
+    'Biratnagar',
+    'Birgunj',
+    'Mahendranagar',
+    'Dolpa',
+    'Chitwan',
   ];
   List listItem1 = [
-    'A',
-    'B',
+    'A+',
+    'A-',
+    'B+',
+    "B-",
+    "O+",
+    'O-',
   ];
 
   @override
@@ -45,7 +61,7 @@ class _ReciverState extends State<Reciver> {
       body: Column(
         children: [
           Container(
-            height: 150,
+            height: 100,
             width: double.maxFinite,
             decoration: BoxDecoration(
                 color: Colors.red[900],
