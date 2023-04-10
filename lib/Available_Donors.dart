@@ -13,6 +13,7 @@ class _Available_DonorsState extends State<Available_Donors> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Available Donors"),
+        backgroundColor: Colors.red[900],
       ),
     );
   }

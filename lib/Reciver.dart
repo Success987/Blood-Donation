@@ -9,6 +9,7 @@ class Reciver extends StatefulWidget {
 }
 
 class _ReciverState extends State<Reciver> {
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -108,11 +109,11 @@ class _ReciverState extends State<Reciver> {
                         ),
                       ),
                       SizedBox(
-                        height: 5,
+                        height: 18,
                       ),
                       InkWell(
                         onTap: () {
-                          {
+                          if (_formKey.currentState!.validate()) {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
