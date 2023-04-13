@@ -70,6 +70,23 @@ class _DonorsState extends State<Donors> {
   ];
   bool _ischecked = false;
 
+  DateTime? _selectedDate;
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: _selectedDate ?? DateTime.now(),
+      firstDate: DateTime(1900),
+      lastDate: DateTime(2100),
+    );
+
+    if (pickedDate != null && pickedDate != _selectedDate) {
+      setState(() {
+        _selectedDate = pickedDate;
+      });
+    }
+  }
+
   @override
   void dispose() {
     super.dispose();
@@ -80,7 +97,7 @@ class _DonorsState extends State<Donors> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.red[900],
-        title: Text(
+        title: const Text(
           "Become Donors",
           style: TextStyle(
               color: Colors.white, fontWeight: FontWeight.w500, fontSize: 20),
@@ -266,6 +283,37 @@ class _DonorsState extends State<Donors> {
                             ),
                           );
                         }).toList(),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  width: double.maxFinite,
+                  height: 55,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(5),
+                    border: Border.all(color: Color(0XFFD1D5D8), width: 2.0),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: InkWell(
+                      onTap: () {
+                        _selectDate(context);
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            _selectedDate == null
+                                ? 'Date of Birth'
+                                : _selectedDate.toString(),
+                          ),
+                          Icon(Icons.calendar_month),
+                        ],
                       ),
                     ),
                   ),
