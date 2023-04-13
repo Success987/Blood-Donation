@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:form_app/Ambulance.dart';
+import 'package:form_app/Donors.dart';
 import 'package:form_app/Reciver.dart';
 
 import 'Hospital.dart';
@@ -18,6 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
           title: Text('Blood Donation'),
           backgroundColor: Colors.red,
@@ -147,24 +149,32 @@ class _HomeScreenState extends State<HomeScreen> {
                     ]),
                   ),
                 ),
-                Card(
-                  elevation: 10,
-                  margin: const EdgeInsets.all(8.0),
-                  color: Colors.white,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(children: [
-                      Icon(
-                        Icons.boy,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        'Donor',
-                        style: TextStyle(color: Colors.black),
-                      ),
-                    ]),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Donors()));
+                  },
+                  child: Card(
+                    elevation: 10,
+                    margin: const EdgeInsets.all(8.0),
+                    color: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(children: [
+                        Icon(
+                          Icons.boy,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          'Donor',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                      ]),
+                    ),
                   ),
                 ),
                 InkWell(

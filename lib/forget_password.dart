@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:form_app/Log_In.dart';
+import 'package:form_app/Forgot_Password.dart';
+import 'package:form_app/Login_Screen.dart';
 
-class ForgetPassword extends StatefulWidget {
-  const ForgetPassword({Key? key}) : super(key: key);
+class forgetpassword extends StatefulWidget {
+  const forgetpassword({Key? key}) : super(key: key);
 
   @override
-  State<ForgetPassword> createState() => _ForgetPasswordState();
+  State<forgetpassword> createState() => _forgetpasswordState();
 }
 
-class _ForgetPasswordState extends State<ForgetPassword> {
+class _forgetpasswordState extends State<forgetpassword> {
   final _formKey = GlobalKey<FormState>();
 
   String phone = "";
@@ -70,8 +71,10 @@ class _ForgetPasswordState extends State<ForgetPassword> {
               InkWell(
                 onTap: () {
                   if (_formKey.currentState!.validate()) {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => const LogIn()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const LoginScreen()));
                     showDialog(
                       context: context,
                       builder: (BuildContext context) {
@@ -102,7 +105,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                             Padding(
                               padding: const EdgeInsets.only(
                                   right: 40.0, bottom: 20),
-                              child: Text('Please check your email.'),
+                              child: Text('Please check your message.'),
                             ),
                             Center(
                               child: TextButton(

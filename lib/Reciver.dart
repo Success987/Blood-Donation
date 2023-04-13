@@ -20,6 +20,7 @@ class _ReciverState extends State<Reciver> {
   late String valueChoose1;
 
   List listItem = [
+    'Select District',
     'Kathmandu',
     'Lalitpur',
     'Kritipur',
@@ -38,12 +39,15 @@ class _ReciverState extends State<Reciver> {
     'Chitwan',
   ];
   List listItem1 = [
+    'Select Blood Group',
     'A+',
     'A-',
     'B+',
     "B-",
     "O+",
     'O-',
+    'AB+',
+    "A-",
   ];
 
   @override
@@ -122,6 +126,7 @@ class _ReciverState extends State<Reciver> {
                         onChanged: (newValue) {
                           setState(() {
                             valueChoose = newValue as String;
+                            districtSelect = valueChoose;
                           });
                         },
                         items: listItem.map((valueItem) {
@@ -167,6 +172,7 @@ class _ReciverState extends State<Reciver> {
                           onChanged: (newValue1) {
                             setState(() {
                               valueChoose1 = newValue1 as String;
+                              bloodGroup = valueChoose1;
                             });
                           },
                           items: listItem1.map((valueItem1) {
@@ -201,7 +207,7 @@ class _ReciverState extends State<Reciver> {
                   GestureDetector(
                     behavior: HitTestBehavior.translucent,
                     onTap: () {
-                      print('asdasd');
+                      //print('asdasd');
                       Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -236,3 +242,6 @@ class _ReciverState extends State<Reciver> {
     );
   }
 }
+
+String bloodGroup = '';
+String districtSelect = '';

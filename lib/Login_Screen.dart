@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:form_app/Forgot_Password.dart';
+import 'package:form_app/forget_password.dart';
 
 import 'Home_Screen.dart';
 
@@ -53,7 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
               },
             ),
             SizedBox(
-              height: 10,
+              height: 20,
             ),
             TextFormField(
               decoration: InputDecoration(
@@ -129,7 +130,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const ForgetPassword()));
+                            builder: (context) => const forgetpassword()));
                   },
                   child: Text(
                     "Forgot Password?",

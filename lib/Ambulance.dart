@@ -101,7 +101,11 @@ class _AmbulanceState extends State<Ambulance> {
                                     width: 30,
                                   ),
                                   TextButton.icon(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        setState(() {
+                                          _launchDialer('01-8576236');
+                                        });
+                                      },
                                       icon: Icon(
                                         Icons.phone,
                                         color: Colors.grey[500],
@@ -241,7 +245,11 @@ class _AmbulanceState extends State<Ambulance> {
                                     width: 30,
                                   ),
                                   TextButton.icon(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        setState(() {
+                                          _launchDialer('01-8576236');
+                                        });
+                                      },
                                       icon: Icon(
                                         Icons.phone,
                                         color: Colors.grey[500],
@@ -381,7 +389,11 @@ class _AmbulanceState extends State<Ambulance> {
                                     width: 30,
                                   ),
                                   TextButton.icon(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        setState(() {
+                                          _launchDialer('01-8576236');
+                                        });
+                                      },
                                       icon: Icon(
                                         Icons.phone,
                                         color: Colors.grey[500],
@@ -521,7 +533,11 @@ class _AmbulanceState extends State<Ambulance> {
                                     width: 30,
                                   ),
                                   TextButton.icon(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        setState(() {
+                                          _launchDialer('01-8576236');
+                                        });
+                                      },
                                       icon: Icon(
                                         Icons.phone,
                                         color: Colors.grey[500],
@@ -661,7 +677,11 @@ class _AmbulanceState extends State<Ambulance> {
                                     width: 30,
                                   ),
                                   TextButton.icon(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        setState(() {
+                                          _launchDialer('01-8576236');
+                                        });
+                                      },
                                       icon: Icon(
                                         Icons.phone,
                                         color: Colors.grey[500],
@@ -801,7 +821,11 @@ class _AmbulanceState extends State<Ambulance> {
                                     width: 30,
                                   ),
                                   TextButton.icon(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        setState(() {
+                                          _launchDialer('01-8576236');
+                                        });
+                                      },
                                       icon: Icon(
                                         Icons.phone,
                                         color: Colors.grey[500],
@@ -941,7 +965,11 @@ class _AmbulanceState extends State<Ambulance> {
                                     width: 30,
                                   ),
                                   TextButton.icon(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        setState(() {
+                                          _launchDialer('01-8576236');
+                                        });
+                                      },
                                       icon: Icon(
                                         Icons.phone,
                                         color: Colors.grey[500],
@@ -1002,17 +1030,10 @@ class _AmbulanceState extends State<Ambulance> {
                           SizedBox(
                             height: 5,
                           ),
-                          InkWell(
-                            onTap: () {
-                              setState(() {
-                                _launchDialer('01-8576236');
-                              });
-                            },
-                            child: Text(
-                              "01-8576236",
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.w500),
-                            ),
+                          Text(
+                            "01-8576236",
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.w500),
                           ),
                         ],
                       ),
