@@ -213,6 +213,8 @@ class _BloodBankState extends State<BloodBank> {
                       children: [
                         Text(
                           "BUTWOL DISTRICT BTSC",
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                               fontSize: 22, fontWeight: FontWeight.w900),
                         ),
