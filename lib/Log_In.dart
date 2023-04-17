@@ -61,7 +61,7 @@ class _LogInState extends State<LogIn> {
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.red, width: 2.0),
                       ),
-                      hintText: "Donor Id or Phone",
+                      hintText: "Email or Phone",
                     ),
                     validator: (val) => val!.isEmpty ? "Phone Name" : null,
                     onChanged: (val) {
@@ -113,7 +113,7 @@ class _LogInState extends State<LogIn> {
                 ),
                 InkWell(
                   onTap: () {
-                    print("hfks");
+                    //print("hfks");
                     if (_formKey.currentState!.validate()) {
                       Navigator.push(
                           context,

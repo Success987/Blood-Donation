@@ -41,7 +41,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                 height: 25,
               ),
               Text(
-                'Phone / Donar ID',
+                'Phone / Email',
                 style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
               ),
               TextFormField(
@@ -55,7 +55,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.red, width: 2.0),
                   ),
-                  hintText: "Enter Phone/Donar ID",
+                  hintText: "Enter Phone/Email",
                 ),
                 validator: (val) => val!.isEmpty ? 'Enter phone' : null,
                 onChanged: (val) {

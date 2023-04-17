@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:form_app/Ambulance.dart';
+import 'package:form_app/BloodBank.dart';
 import 'package:form_app/Donors.dart';
 import 'package:form_app/Reciver.dart';
 
@@ -116,7 +117,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       padding: const EdgeInsets.all(8.0),
                       child: Row(children: [
                         Icon(
-                          Icons.local_hospital,
+                          Fontisto.hospital,
+                          size: 18,
                         ),
                         SizedBox(
                           width: 10,
@@ -136,15 +138,21 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(children: [
-                      Icon(
-                        Icons.payment,
-                      ),
+                      Icon(MaterialCommunityIcons.hospital_box),
                       SizedBox(
                         width: 10,
                       ),
-                      Text(
-                        'Payment',
-                        style: TextStyle(color: Colors.black),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const BloodBank()));
+                        },
+                        child: Text(
+                          'Blood Bank',
+                          style: TextStyle(color: Colors.black),
+                        ),
                       ),
                     ]),
                   ),

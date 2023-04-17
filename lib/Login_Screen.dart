@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:form_app/Donors.dart';
 import 'package:form_app/Forgot_Password.dart';
+import 'package:form_app/New-Id.dart';
+import 'package:form_app/Shared/bot_nav_bar.dart';
 import 'package:form_app/forget_password.dart';
 
 import 'Home_Screen.dart';
@@ -96,7 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const HomeScreen()));
+                          builder: (context) => const BotNavBar()));
                 }
               },
               child: Container(
@@ -120,7 +123,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
             SizedBox(
-              height: 5,
+              height: 8,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -137,6 +140,26 @@ class _LoginScreenState extends State<LoginScreen> {
                     style: TextStyle(
                         color: Colors.red[500], fontWeight: FontWeight.bold),
                   ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('Create New Account.'),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => const NewId()));
+                  },
+                  child: Text('Sign Up',
+                      style: TextStyle(
+                          color: Colors.red,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500)),
                 ),
               ],
             ),
