@@ -257,7 +257,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                 children: [
                   CircleAvatar(
-                    backgroundImage: AssetImage("images/logo.png"),
+                    backgroundImage: AssetImage("images/mypic.jpg"),
                     radius: 30,
                   ),
                   SizedBox(
