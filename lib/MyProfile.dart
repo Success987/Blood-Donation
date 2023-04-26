@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:form_app/About_us.dart';
+import 'package:form_app/Account_Setting.dart';
 import 'package:form_app/Login_Screen.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
@@ -263,7 +265,12 @@ class _MyProfileState extends State<MyProfile> {
                     style:
                         TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
                 TextButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Account_Setting()));
+                    },
                     icon: Icon(
                       Icons.settings,
                       color: Colors.grey[500],
@@ -278,7 +285,10 @@ class _MyProfileState extends State<MyProfile> {
                   thickness: 2,
                 ),
                 TextButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => About_us()));
+                    },
                     icon: Icon(
                       Icons.info_outline,
                       color: Colors.grey[500],

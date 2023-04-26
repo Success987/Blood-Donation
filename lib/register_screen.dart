@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:form_app/Login_Screen.dart';
+import 'package:form_app/Log_In.dart';
+import 'package:http/http.dart' as http;
+import 'Home_Screen.dart';
+import 'dart:convert';
 
-class NewId extends StatefulWidget {
-  const NewId({Key? key}) : super(key: key);
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({Key? key}) : super(key: key);
 
   @override
-  State<NewId> createState() => _NewIdState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _NewIdState extends State<NewId> {
+class _RegisterScreenState extends State<RegisterScreen> {
   final _formKey = GlobalKey<FormState>();
   bool _isObscure = true;
   String FullName = "";
@@ -19,10 +22,46 @@ class _NewIdState extends State<NewId> {
 
   void initState() {
     super.initState();
+    valueChoose = listItem[0];
+    valueChoose1 = listItem1[0];
     valueChoose2 = listItem2[0];
   }
 
+  late String valueChoose;
+  late String valueChoose1;
   late String valueChoose2;
+
+  List listItem = [
+    'Select District',
+    'Kathmandu',
+    'Lalitpur',
+    'Kritipur',
+    'Dhading',
+    'Nuwakot',
+    'Bhaktapur',
+    'Dharan',
+    'Jhapa',
+    'Illam',
+    'Dhankuta',
+    'Janakpur',
+    'Biratnagar',
+    'Birgunj',
+    'Mahendranagar',
+    'Dolpa',
+    'Chitwan',
+  ];
+
+  List listItem1 = [
+    'Select Blood Group',
+    'A+',
+    'A-',
+    'B+',
+    "B-",
+    "O+",
+    'O-',
+    'AB+',
+    "A-",
+  ];
 
   List listItem2 = [
     'Select Gender',
@@ -30,15 +69,37 @@ class _NewIdState extends State<NewId> {
     'Female',
     'Other',
   ];
-
   bool _ischecked = false;
+
+  DateTime? _selectedDate;
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: _selectedDate ?? DateTime.now(),
+      firstDate: DateTime(1900),
+      lastDate: DateTime(2100),
+    );
+
+    if (pickedDate != null && pickedDate != _selectedDate) {
+      setState(() {
+        _selectedDate = pickedDate;
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.red[900],
         title: const Text(
-          "New Account Login",
+          "Become Donors",
           style: TextStyle(
               color: Colors.white, fontWeight: FontWeight.w500, fontSize: 20),
         ),
@@ -121,6 +182,89 @@ class _NewIdState extends State<NewId> {
                         dropdownColor: Colors.white,
                         icon: const Icon(Icons.arrow_drop_down),
                         iconSize: 30.0,
+                        value: valueChoose1,
+                        onChanged: (newValue1) {
+                          setState(() {
+                            valueChoose1 = newValue1 as String;
+                            bloodGroup = valueChoose1;
+                          });
+                        },
+                        items: listItem1.map((valueItem1) {
+                          return DropdownMenuItem(
+                            value: valueItem1,
+                            child: Text(
+                              valueItem1,
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 16.0,
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  width: double.maxFinite,
+                  height: 55,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(5),
+                    border: Border.all(color: Color(0XFFD1D5D8), width: 2.0),
+                  ),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton(
+                      alignment: Alignment.center,
+                      dropdownColor: Colors.white,
+                      icon: const Icon(
+                        Icons.location_pin,
+                        size: 20,
+                      ),
+                      iconSize: 30.0,
+                      value: valueChoose,
+                      onChanged: (newValue) {
+                        setState(() {
+                          valueChoose = newValue as String;
+                          districtSelect = valueChoose;
+                        });
+                      },
+                      items: listItem.map((valueItem) {
+                        return DropdownMenuItem(
+                          value: valueItem,
+                          child: Text(
+                            valueItem,
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 16.0,
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  width: double.maxFinite,
+                  height: 55,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(5),
+                    border: Border.all(color: Color(0XFFD1D5D8), width: 2.0),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 15.0),
+                    child: DropdownButtonHideUnderline(
+                      child: DropdownButton(
+                        dropdownColor: Colors.white,
+                        icon: const Icon(Icons.arrow_drop_down),
+                        iconSize: 30.0,
                         value: valueChoose2,
                         onChanged: (newValue1) {
                           setState(() {
@@ -146,6 +290,34 @@ class _NewIdState extends State<NewId> {
                 ),
                 SizedBox(
                   height: 10,
+                ),
+                Container(
+                  width: double.maxFinite,
+                  height: 55,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(5),
+                    border: Border.all(color: Color(0XFFD1D5D8), width: 2.0),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: InkWell(
+                      onTap: () {
+                        _selectDate(context);
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            _selectedDate == null
+                                ? 'Date of Birth'
+                                : _selectedDate.toString(),
+                          ),
+                          Icon(Icons.calendar_month),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
                 SizedBox(
                   height: 10,
@@ -225,7 +397,7 @@ class _NewIdState extends State<NewId> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const LoginScreen()));
+                              builder: (context) => const HomeScreen()));
                       showDialog(
                         context: context,
                         builder: (BuildContext context) {
@@ -304,7 +476,7 @@ class _NewIdState extends State<NewId> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const LoginScreen()));
+                                builder: (context) => const LogIn()));
                       },
                       child: Text('Log In',
                           style: TextStyle(
@@ -323,4 +495,6 @@ class _NewIdState extends State<NewId> {
   }
 }
 
+String bloodGroup = '';
+String districtSelect = '';
 String Gender = '';

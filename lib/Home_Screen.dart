@@ -2,8 +2,10 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:form_app/Ambulance.dart';
+import 'package:form_app/BD-Card.dart';
 import 'package:form_app/BloodBank.dart';
 import 'package:form_app/Donors.dart';
+import 'package:form_app/Manage_A.dart';
 import 'package:form_app/Reciver.dart';
 
 import 'Hospital.dart';
@@ -290,10 +292,11 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ),
             ListTile(
-              leading: Icon(Icons.map),
-              title: const Text('map'),
+              leading: Icon(Icons.card_membership_outlined),
+              title: const Text('BD Card'),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const BD_Card()));
               },
             ),
             ListTile(
@@ -304,10 +307,14 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ),
             ListTile(
-              leading: Icon(Icons.emergency),
-              title: const Text('Emergency Number'),
+              leading: Icon(
+                Fontisto.ambulance,
+                size: Checkbox.width,
+              ),
+              title: const Text('Manage Ambulance'),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const My_Req()));
               },
             ),
             ListTile(

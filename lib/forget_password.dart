@@ -105,7 +105,7 @@ class _forgetpasswordState extends State<forgetpassword> {
                             Padding(
                               padding: const EdgeInsets.only(
                                   right: 40.0, bottom: 20),
-                              child: Text('Please check your message.'),
+                              child: Text('Please check your email/message.'),
                             ),
                             Center(
                               child: TextButton(

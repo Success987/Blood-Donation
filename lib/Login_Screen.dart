@@ -1,11 +1,39 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:form_app/Donors.dart';
 import 'package:form_app/Forgot_Password.dart';
-import 'package:form_app/New-Id.dart';
+import 'package:form_app/models/login.dart';
+import 'package:form_app/register_screen.dart';
 import 'package:form_app/Shared/bot_nav_bar.dart';
 import 'package:form_app/forget_password.dart';
+import 'package:http/http.dart' as http;
 
 import 'Home_Screen.dart';
+
+Future<Signin> createSignin(
+    String email, String password, BuildContext context) async {
+  final response = await http.post(
+    Uri.parse('http://10.0.2.2:8080/api/login/'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, String>{
+      'email': email,
+      'password': password,
+    }),
+  );
+  print(response.body);
+  print(response.statusCode);
+
+  if (response.statusCode == 201) {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => const BotNavBar()));
+    return Signin.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception('Failed to SignIn');
+  }
+}
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -16,6 +44,10 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+  Future<Signin>? _futureSignin;
+
   bool _isObscure = true;
   String email = "";
   String password = "";
@@ -39,6 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 200,
                 ),
                 TextFormField(
+                  controller: _emailController,
                   decoration: InputDecoration(
                     fillColor: Colors.white,
                     filled: true,
@@ -63,6 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 20,
                 ),
                 TextFormField(
+                  controller: _passwordController,
                   decoration: InputDecoration(
                     fillColor: Colors.white,
                     filled: true,
@@ -100,10 +134,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 InkWell(
                   onTap: () {
                     if (_formKey.currentState!.validate()) {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const BotNavBar()));
+                      setState(() {
+                        _futureSignin = createSignin(_emailController.text,
+                            _passwordController.text, context);
+                      });
                     }
                   },
                   child: Container(
@@ -160,7 +194,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const NewId()));
+                                builder: (context) => const RegisterScreen()));
                       },
                       child: Text('Sign Up',
                           style: TextStyle(
@@ -178,7 +212,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Container(
                       color: Colors.grey[500],
                       height: 2,
-                      width: MediaQuery.of(context).size.width * 0.33,
+                      width: MediaQuery.of(context).size.width * 0.30,
                     ),
                     Text('Login or Signup'),
                     Container(
@@ -253,6 +287,20 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  FutureBuilder<Signin> buildFutureBuilder() {
+    return FutureBuilder<Signin>(
+      future: _futureSignin,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return Text(snapshot.data!.message.toString());
+        } else if (snapshot.hasError) {
+          return Text('${snapshot.error}');
+        }
+        return const CircularProgressIndicator();
+      },
     );
   }
 }

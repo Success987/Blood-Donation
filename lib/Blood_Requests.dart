@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:form_app/Add_Req.dart';
+import 'package:form_app/My_Req.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class BloodRequest extends StatefulWidget {
@@ -9,6 +11,7 @@ class BloodRequest extends StatefulWidget {
 }
 
 class _BloodRequestState extends State<BloodRequest> {
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -975,68 +978,86 @@ class _BloodRequestState extends State<BloodRequest> {
                       actions: [
                         Column(
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Container(
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => const My_Req()));
+                              },
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(100),
+                                        color: Colors.grey[300],
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text('View My Request'),
+                                      )),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Container(
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(100),
-                                      color: Colors.grey[300],
+                                      color: Colors.green,
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text('View My Request'),
-                                    )),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(100),
-                                    color: Colors.green,
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(12.0),
-                                    child: Icon(
-                                      Icons.timeline,
-                                      color: Colors.black,
+                                      padding: const EdgeInsets.all(12.0),
+                                      child: Icon(
+                                        Icons.timeline,
+                                        color: Colors.black,
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                             SizedBox(
                               height: 10,
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Container(
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => const Add_Req()));
+                              },
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(100),
+                                        color: Colors.grey[300],
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text('Add Request'),
+                                      )),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Container(
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(100),
-                                      color: Colors.grey[300],
+                                      color: Colors.green,
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text('Add Request'),
-                                    )),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(100),
-                                    color: Colors.green,
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(12.0),
-                                    child: Icon(
-                                      Icons.note_add,
-                                      color: Colors.black,
+                                      padding: const EdgeInsets.all(12.0),
+                                      child: Icon(
+                                        Icons.note_add,
+                                        color: Colors.black,
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ],
                         ),

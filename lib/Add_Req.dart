@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:form_app/Log_In.dart';
+import 'package:form_app/Blood_Requests.dart';
 
-import 'Home_Screen.dart';
-
-class Donors extends StatefulWidget {
-  const Donors({Key? key}) : super(key: key);
+class Add_Req extends StatefulWidget {
+  const Add_Req({Key? key}) : super(key: key);
 
   @override
-  State<Donors> createState() => _DonorsState();
+  State<Add_Req> createState() => _Add_ReqState();
 }
 
-class _DonorsState extends State<Donors> {
+class _Add_ReqState extends State<Add_Req> {
   final _formKey = GlobalKey<FormState>();
   bool _isObscure = true;
   String FullName = "";
@@ -97,25 +95,21 @@ class _DonorsState extends State<Donors> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.red[900],
-        title: const Text(
-          "Become Donors",
-          style: TextStyle(
-              color: Colors.white, fontWeight: FontWeight.w500, fontSize: 20),
-        ),
+        title: Text("Add Blood Request"),
       ),
       body: SingleChildScrollView(
         child: Form(
           key: _formKey,
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(10.0),
             child: Column(
               children: [
                 Text(
-                  "Create Account",
+                  "Fill all the fields to request required blood with the whole Nepali Blood Donors Community. It will help to find donor quickly",
                   style: TextStyle(
                       color: Colors.black,
-                      fontSize: 50,
-                      fontWeight: FontWeight.w300),
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
                   height: 20,
@@ -131,7 +125,7 @@ class _DonorsState extends State<Donors> {
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.red, width: 2.0),
                     ),
-                    hintText: "Ambulance Service Name",
+                    hintText: "Patient Name",
                   ),
                   validator: (val) => val!.isEmpty ? "Full Name" : null,
                   onChanged: (val) {
@@ -154,7 +148,7 @@ class _DonorsState extends State<Donors> {
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.red, width: 2.0),
                     ),
-                    hintText: "Phone Number",
+                    hintText: "Contact Person",
                   ),
                   validator: (val) => val!.isEmpty ? "Phone Name" : null,
                   onChanged: (val) {
@@ -332,14 +326,8 @@ class _DonorsState extends State<Donors> {
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.red, width: 2.0),
                     ),
-                    hintText: "Email",
+                    hintText: "Hospital",
                   ),
-                  validator: (val) => val!.isEmpty ? "Email" : null,
-                  onChanged: (val) {
-                    setState(() {
-                      Email = val;
-                    });
-                  },
                 ),
                 SizedBox(
                   height: 10,
@@ -355,25 +343,45 @@ class _DonorsState extends State<Donors> {
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.red, width: 2.0),
                     ),
-                    hintText: "Enter Password",
-                    suffixIcon: IconButton(
-                      icon: Icon(
-                        _isObscure ? Icons.visibility : Icons.visibility_off,
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          _isObscure = !_isObscure;
-                        });
-                      },
-                    ),
+                    hintText: "Required Pint",
                   ),
-                  obscureText: _isObscure,
-                  validator: (val) => val!.isEmpty ? 'Enter Password' : null,
-                  onChanged: (val) {
-                    setState(() {
-                      password = val;
-                    });
-                  },
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                TextFormField(
+                  decoration: InputDecoration(
+                    fillColor: Colors.white,
+                    filled: true,
+                    enabledBorder: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Color(0XFFD1D5D8), width: 2.0),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.red, width: 2.0),
+                    ),
+                    hintText: "Your Phone Number",
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                TextFormField(
+                  decoration: InputDecoration(
+                    fillColor: Colors.white,
+                    filled: true,
+                    enabledBorder: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Color(0XFFD1D5D8), width: 2.0),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.red, width: 2.0),
+                    ),
+                    hintText: "Case Detail",
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
                 ),
                 Row(
                   children: [
@@ -396,7 +404,7 @@ class _DonorsState extends State<Donors> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const HomeScreen()));
+                              builder: (context) => const BloodRequest()));
                       showDialog(
                         context: context,
                         builder: (BuildContext context) {
@@ -453,7 +461,7 @@ class _DonorsState extends State<Donors> {
                       child: Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: Text(
-                          'Submit',
+                          'Proceed',
                           style: TextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: 16,
@@ -465,25 +473,6 @@ class _DonorsState extends State<Donors> {
                 ),
                 SizedBox(
                   height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text('I am already a member.'),
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const LogIn()));
-                      },
-                      child: Text('Log In',
-                          style: TextStyle(
-                              color: Colors.red,
-                              fontSize: 15,
-                              fontWeight: FontWeight.w500)),
-                    ),
-                  ],
                 ),
               ],
             ),
